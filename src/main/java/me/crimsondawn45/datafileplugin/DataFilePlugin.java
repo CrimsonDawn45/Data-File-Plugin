@@ -197,8 +197,8 @@ public class DataFilePlugin extends JavaPlugin {
      * @return if they are a floodgate player
      */
     public static boolean isFloodgatePlayer(OfflinePlayer player) {
-        if(player_data.contains("player." + player.getUniqueId() + ".is-floodgate")) {
-            return player_data.getConfig().getBoolean("player." + player.getUniqueId() + ".is-floodgate");
+        if(player_data.contains("player." + player.getUniqueId().toString() + ".is-floodgate")) {
+            return player_data.getConfig().getBoolean("player." + player.getUniqueId().toString() + ".is-floodgate");
         }
         return false;
     }
