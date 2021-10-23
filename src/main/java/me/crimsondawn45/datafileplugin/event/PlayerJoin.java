@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.geysermc.floodgate.api.FloodgateApi;
 
 import me.crimsondawn45.datafileplugin.DataFile;
 import me.crimsondawn45.datafileplugin.DataFilePlugin;
@@ -29,14 +30,18 @@ public class PlayerJoin implements Listener {
         String joinMsg;
         String joinMsgFormat;
 
-        if(!playerData.contains("player." + playerUuid)) {  //Create entry
-
+        if(!playerData.contains("player." + playerUuid + ".name")) {    //Ensure name
             playerData.set("player." + playerUuid + ".name", player.getDisplayName());
+            DataFilePlugin.getPlayerData().save(playerData);
+        }
+
+        if(!playerData.contains("player." + playerUuid + "joined")) {   //Ensure join date
             playerData.set("player." + playerUuid + ".joined", player.getFirstPlayed());
             DataFilePlugin.getPlayerData().save(playerData);
+        }
 
-        } else if(!playerData.contains("player." + playerUuid + "joined")) {
-            playerData.set("player." + playerUuid + ".joined", player.getFirstPlayed());
+        if(!playerData.contains("player." + playerUuid + "is-floodgate")) { //Ensure floodgate
+            playerData.set("player." + playerUuid + ".is-floodgate", FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId()));
             DataFilePlugin.getPlayerData().save(playerData);
         }
 
@@ -45,6 +50,9 @@ public class PlayerJoin implements Listener {
         if(!playerName.equals(player.getDisplayName())) {   //Make name match file
             player.setDisplayName(playerName);
         }
+
+        //Log if player is a floodgate player
+
 
         //Ensure message is from file
         if(dataFileSettingsData.contains("join-message-format")) {
