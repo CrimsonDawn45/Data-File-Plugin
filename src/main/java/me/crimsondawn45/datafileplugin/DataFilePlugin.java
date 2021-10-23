@@ -164,6 +164,45 @@ public class DataFilePlugin extends JavaPlugin {
         return "null";
     }
 
+    /**
+     * Tells you if a player is a floodgaate player or not
+     * 
+     * @param player player
+     * @return if they are a floodgate player
+     */
+    public static boolean isFloodgatePlayer(Player player) {
+        if(player_data.contains("player." + player.getUniqueId() + ".is-floodgate")) {
+            return player_data.getConfig().getBoolean("player." + player.getUniqueId() + ".is-floodgate");
+        }
+        return false;
+    }
+
+    /**
+     * Tells you if a player is a floodgaate player or not
+     * 
+     * @param player player
+     * @return if they are a floodgate player
+     */
+    public static boolean isFloodgatePlayer(UUID uuid) {
+        if(player_data.contains("player." + uuid + ".is-floodgate")) {
+            return player_data.getConfig().getBoolean("player." + uuid + ".is-floodgate");
+        }
+        return false;
+    }
+
+    /**
+     * Tells you if a player is a floodgaate player or not
+     * 
+     * @param player player
+     * @return if they are a floodgate player
+     */
+    public static boolean isFloodgatePlayer(OfflinePlayer player) {
+        if(player_data.contains("player." + player.getUniqueId() + ".is-floodgate")) {
+            return player_data.getConfig().getBoolean("player." + player.getUniqueId() + ".is-floodgate");
+        }
+        return false;
+    }
+
     protected static void registerDataFile(DataFile dataFile) {
         datafile_index.add(dataFile);
     }
