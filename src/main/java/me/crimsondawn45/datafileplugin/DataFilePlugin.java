@@ -171,8 +171,8 @@ public class DataFilePlugin extends JavaPlugin {
      * @return if they are a floodgate player
      */
     public static boolean isFloodgatePlayer(Player player) {
-        if(player_data.contains("player." + player.getUniqueId() + ".is-floodgate")) {
-            return player_data.getConfig().getBoolean("player." + player.getUniqueId() + ".is-floodgate");
+        if(player_data.contains("player." + player.getUniqueId().toString() + ".is-floodgate")) {
+            return player_data.getConfig().getBoolean("player." + player.getUniqueId().toString() + ".is-floodgate");
         }
         return false;
     }
@@ -184,8 +184,8 @@ public class DataFilePlugin extends JavaPlugin {
      * @return if they are a floodgate player
      */
     public static boolean isFloodgatePlayer(UUID uuid) {
-        if(player_data.contains("player." + uuid + ".is-floodgate")) {
-            return player_data.getConfig().getBoolean("player." + uuid + ".is-floodgate");
+        if(player_data.contains("player." + uuid.toString() + ".is-floodgate")) {
+            return player_data.getConfig().getBoolean("player." + uuid.toString() + ".is-floodgate");
         }
         return false;
     }
